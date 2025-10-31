@@ -181,5 +181,4 @@ async def main():
     return "done for finally!"
 
 if __name__ == "__main__":
-    # asyncio.run(main())
-    asyncio.run(login_and_create_save_state("edw20009@byui.edu", "edwardskyler4", "Puhskintinio4548"))
+    asyncio.run(main())
