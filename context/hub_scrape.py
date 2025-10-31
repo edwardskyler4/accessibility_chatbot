@@ -4,18 +4,28 @@ import re
 import csv
 import os
 
+if os.name == "nt":
+    SAVE_STATE_FILE = "accessibility_chatbot\\context\\.auth\\state.json"
+else:
+    SAVE_STATE_FILE = "accessibility_chatbot/context/.auth/state.json"
+
 async def login_and_create_save_state(byui_email, username, password):
     """
     Logs you into your BYUI account and creates a storage state that allows a program to access sharepoint sites without needing to repeat the login process.
     Params: School email, Church Username, Church Password.
     Returns: Technically nothing, but it will create a JSON with your new save state.
     """
+    
+    if os.name == "nt":
+        FILE = "accessibility_chatbot\\context\\.auth"
+    else:
+        FILE = "accessibility_chatbot/context/.auth/"
 
     try:
-      os.mkdir("./.auth/")
-      print("Directory './.auth/' created.")
+      os.mkdir(FILE)
+      print(f"Directory {FILE} created.")
     except FileExistsError:
-      print("Directory './.auth/' already exists.")
+      print(f"Directory {FILE} already exists.")
 
     async with async_playwright() as p:
         browser = await p.chromium.launch()
@@ -44,7 +54,7 @@ async def login_and_create_save_state(byui_email, username, password):
 
         await page.wait_for_url(re.compile("webmailbyui.sharepoint.com"))
 
-        await context.storage_state(path=".\\.auth\\state.json")
+        await context.storage_state(path=SAVE_STATE_FILE)
         print("Save state created.")
 
         await context.close()
@@ -171,4 +181,5 @@ async def main():
     return "done for finally!"
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # asyncio.run(main())
+    asyncio.run(login_and_create_save_state("edw20009@byui.edu", "edwardskyler4", "Puhskintinio4548"))
