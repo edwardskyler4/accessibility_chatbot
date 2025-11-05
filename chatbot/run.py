@@ -6,12 +6,12 @@ from model import NeuralNet
 from training import bag_of_words, tokenize
 
 if os.name == "nt":
-    INTENTS_FILE = "accessibility_chatbot\\test_chatbot\\intents.json"
+    INTENTS_FILE = "chatbot\\intents.json"
 else:
     INTENTS_FILE = "intents.json"
 
 if os.name == "nt":
-    DATA_FILE = "accessibility_chatbot\\test_chatbot\\model_data.pth"
+    DATA_FILE = "chatbot\\model_data.pth"
 else:
     DATA_FILE = "model_data.pth"
 

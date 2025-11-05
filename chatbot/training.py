@@ -24,7 +24,7 @@ def bag_of_words(tokenized_sentence, words):
     return bag
 
 if os.name == "nt":
-    INTENTS_FILE = "accessibility_chatbot\\test_chatbot\\intents.json"
+    INTENTS_FILE = "chatbot\\intents.json"
 else:
     INTENTS_FILE = "intents.json"
 
@@ -77,7 +77,7 @@ def main():
     output_size = len(tags)
     input_size = len(all_words)
     learning_rate = 0.01
-    num_epochs = 800
+    num_epochs = 1000
 
     dataset = ChatDataset()
     train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
@@ -119,7 +119,7 @@ def main():
     }
 
     if os.name == "nt":
-        DATA_FILE = "accessibility_chatbot\\test_chatbot\\model_data.pth"
+        DATA_FILE = "chatbot\\model_data.pth"
     else:
         DATA_FILE = "model_data.pth"
 
