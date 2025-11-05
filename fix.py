@@ -13,8 +13,6 @@ with open("test.json", "r") as f:
 # batch_4 = list[300:400]
 # batch_5 = list[400:]
 
-# with open("tq1.json", "w") as f:
-#     json.dump(batch_1, f)
 
 # with open("tq2.json", "w") as f:
 #     json.dump(batch_2, f)
@@ -30,7 +28,14 @@ with open("test.json", "r") as f:
 
 tags = []
 questions = []
+amount_similar = []
 for dict in intents["intents"]:
     tags.append(dict["tag"])
     questions.extend(dict["patterns"])
-print(f"Tags: {len(tags)}\nQuestions: {len(questions)}")
+    for question in dict["patterns"]:
+        if question in list:
+            amount_similar.append(question)
+print(f"Tags: {len(tags)}\nQuestions: {len(questions)}\nAmount of correct questions: {len(amount_similar)}")
+
+# with open("tq5.json", "w") as f:
+    # json.dump(intents, f)
