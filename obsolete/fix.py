@@ -4,7 +4,7 @@ print(len(list))
 
 import json
 
-with open("test.json", "r") as f:
+with open("chatbot\\intents.json", "r") as f:
     intents = json.load(f)
 
 # batch_1 = list[:100]
@@ -28,14 +28,20 @@ with open("test.json", "r") as f:
 
 tags = []
 questions = []
-amount_similar = []
+amount_similar = 0
 for dict in intents["intents"]:
     tags.append(dict["tag"])
     questions.extend(dict["patterns"])
     for question in dict["patterns"]:
         if question in list:
-            amount_similar.append(question)
-print(f"Tags: {len(tags)}\nQuestions: {len(questions)}\nAmount of correct questions: {len(amount_similar)}")
+            amount_similar += 1
+print(f"Tags: {len(tags)}\nQuestions: {len(questions)}\nAmount of correct questions: {amount_similar}")
+
+# left_out_questions = []
+# for question in list:
+#     if question not in questions:
+#         left_out_questions.append(question)
+# print(left_out_questions)
 
 # with open("tq5.json", "w") as f:
     # json.dump(intents, f)

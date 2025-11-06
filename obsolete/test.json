@@ -21,7 +21,14 @@
       "Why is accessibility important in higher education?",
       "What are the basic principles of accessibility?",
       "What does POUR stand for?",
-      "What are universal design principles?"
+      "What are universal design principles?",
+      "How do I build an accessibility-first culture?",
+      "How do I encourage students to give accessibility feedback?",
+      "Can accessibility improve student engagement?",
+      "Does accessibility help all learners?",
+      "What is inclusive pedagogy?",
+      "Are there other types of disabilities other than vision or hearing to consider with web accessibility?",
+      "How do we make digital content more accessible for students with ADHD, dyslexia, or other cognitive disabilities?"
     ]
   },
   {
@@ -106,7 +113,16 @@
       "How do I test my website with a screen reader?",
       "Which screen readers should I test with?",
       "Is NVDA free?",
-      "What are good beginner screen reader testing steps?"
+      "What are good beginner screen reader testing steps?",
+      "How do I help students use screen readers?",
+      "How do students zoom text on the screen?",
+      "What browser extensions help with accessibility?",
+      "What is assistive technology?",
+      "What are examples of assistive technology?",
+      "How do I support students using speech-to-text?",
+      "How do I support students using screen magnifiers?",
+      "How do I support students who use text-to-speech?",
+      "How do I support screen reader testing in my class?"
     ]
   },
   {
@@ -128,7 +144,8 @@
       "You said only data relationships, but can't I use them for layout? It makes it so much easier to design.",
       "How do I test keyboard navigation?",
       "What does keyboard-only access mean?",
-      "Why is keyboard accessibility required?"
+      "Why is keyboard accessibility required?",
+      "What is usability vs. accessibility?"
     ]
   },
   {
@@ -174,7 +191,30 @@
       "Where do I refer students for disability services?",
       "How do I plan ahead for students with accessibility needs?",
       "How do I design accessible group work?",
-      "How do I ensure accessibility in synchronous sessions?"
+      "How do I ensure accessibility in synchronous sessions?",
+      "How do I distribute accessible course materials?",
+      "How early should I provide materials to students?",
+      "What file formats are most accessible?",
+      "How do I write accessible email announcements?",
+      "Are emojis accessible in course communication?",
+      "How do I make accessible timelines?",
+      "Can I use publisher content that is not accessible?",
+      "How do I notify students about accessible alternatives?",
+      "What are alternative formats?",
+      "How do I make accessible lab content?",
+      "How do I make accessible STEM figures?",
+      "Can I reuse old lecture videos if they are not accessible?",
+      "How do I create accessible rubrics?",
+      "How do I make accessible course handouts?",
+      "How do I format accessible reading lists?",
+      "How do I check accessibility during course development?",
+      "Do I need to update my syllabus accessibility statement?",
+      "How do I talk about accessibility with students?",
+      "How do I handle accessibility complaints?",
+      "How do I build accessibility into my workflow?",
+      "How do I make Canvas pages accessible?",
+      "How do I make Zoom meetings accessible?",
+      "How do I make Teams meetings accessible?"
     ]
   },
   {
@@ -216,7 +256,11 @@
       "Are Google Docs accessible?",
       "How do I make Google Docs accessible?",
       "Are Google Slides accessible?",
-      "What tools help evaluate accessibility in Google products?"
+      "What tools help evaluate accessibility in Google products?",
+      "How do I make Excel spreadsheets accessible?",
+      "What is header row formatting?",
+      "How do I caption media in PowerPoint?",
+      "How do I choose accessible templates?"
     ]
   },
   {
@@ -248,7 +292,16 @@
       "What tools can I use to caption my videos?",
       "Do audio recordings need transcripts?",
       "What makes a transcript accessible?",
-      "What are audio descriptions and when are they required?"
+      "What are audio descriptions and when are they required?",
+      "How do I caption YouTube videos I upload?",
+      "How do I caption videos I did not create?",
+      "How do I caption TikTok or short-form videos for class?",
+      "How do I add subtitles to lecture recordings?",
+      "How do I fix captions in Panopto?",
+      "What is accessible multimedia?",
+      "Do animations cause accessibility problems?",
+      "How do I avoid flashing content?",
+      "How do I enable live captions in Zoom?"
     ]
   },
   {
@@ -265,7 +318,9 @@
       "How do I write alt text for images?",
       "What images should not have alt text?",
       "How detailed should alt text be?",
-      "How do I write alt text for charts or graphs?"
+      "How do I write alt text for charts or graphs?",
+      "How do I add alt text in Canvas?",
+      "How do I make an Adobe Illustrator graphic accessible?"
     ]
   },
   {
@@ -301,7 +356,12 @@
       "What is a VPAT?",
       "How do I interpret a VPAT?",
       "How do I evaluate vendor accessibility claims?",
-      "Do I need approval before choosing new software?"
+      "Do I need approval before choosing new software?",
+      "How do I check accessibility in Adobe tools?",
+      "What accessibility tools should I install?",
+      "What automated checkers work for beginners?",
+      "How do I do manual accessibility checks?",
+      "How do I document accessibility improvements?"
     ]
   },
   {
@@ -377,7 +437,10 @@
       "If we don't have any employees who are disabled, do we still have to make our internal resources accessible?",
       "What resources are available to help me convert my online course content to an accessible format?",
       "What support, training, and resources are available to assist me?",
-      "What training do faculty and staff need to understand accessibility?"
+      "What training do faculty and staff need to understand accessibility?",
+      "How long does accessibility remediation take?",
+      "What resources does my institution offer?",
+      "Where can I get accessibility training?"
     ]
   },
   {
@@ -499,7 +562,8 @@
       "How can I ensure that accessibility is considered when contracting with an outside vendor?",
       "How do we know if third-party content is accessible?",
       "How do we handle CAPTCHA for accessibility concerns, and what are alternative methods?",
-      "If a webpage uses a CAPTCHA for verification, what are some accessibility concerns, and how would you suggest resolving them?"
+      "If a webpage uses a CAPTCHA for verification, what are some accessibility concerns, and how would you suggest resolving them?",
+      "How do I ensure third-party content is accessible?"
     ]
   }
 ]
