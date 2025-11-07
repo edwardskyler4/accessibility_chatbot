@@ -1,0 +1,320 @@
+{
+    "intents":
+[
+ {
+    "tag": "General Accessibility Awareness & Culture",
+    "patterns": [
+      "What is digital accessibility?",
+      "Why does accessibility matter?",
+      "How does accessibility benefit everyone?",
+      "What are the basic principles of accessibility?",
+      "Can you explain what inclusive design means?",
+      "How do I create an accessibility-first mindset in my team?",
+      "What does it mean to make content accessible?",
+      "How does accessibility relate to diversity and inclusion?",
+      "What are common accessibility barriers people face?",
+      "How can I promote accessibility awareness on campus?"
+    ]
+  },
+  {
+    "tag": "Laws, Policy, Compliance & Governance",
+    "patterns": [
+      "What are the legal requirements for accessibility?",
+      "What is Section 508 compliance?",
+      "Do I need to comply with the ADA for digital content?",
+      "What accessibility laws apply to higher education?",
+      "What is our institutional accessibility policy?",
+      "Are there penalties for not making content accessible?",
+      "What does CVAA require for multimedia content?",
+      "How does ADA apply to online courses?",
+      "What are the legal risks of inaccessible content?",
+      "Does accessibility compliance apply to all university content?"
+    ]
+  },
+  {
+    "tag": "WCAG-Specific Guidance",
+    "patterns": [
+      "What is WCAG and why is it important?",
+      "What are the WCAG 2.1 success criteria?",
+      "What's the difference between WCAG A, AA, and AAA?",
+      "Which WCAG level should I aim for?",
+      "What does WCAG 2.2 add that's new?",
+      "How do I meet WCAG perceivable principles?",
+      "What are the four principles of WCAG?",
+      "Can you explain WCAG operable requirements?",
+      "What does WCAG say about keyboard navigation?",
+      "How do I check if my content meets WCAG standards?"
+    ]
+  },
+  {
+    "tag": "Assistive Technologies & Screen Readers",
+    "patterns": [
+      "What is a screen reader and how does it work?",
+      "What assistive technologies do students use?",
+      "How do blind users navigate web content?",
+      "What are common screen readers I should test with?",
+      "How does NVDA differ from JAWS?",
+      "Can you explain how VoiceOver works?",
+      "What other assistive technologies exist besides screen readers?",
+      "How do students with motor disabilities access content?",
+      "What is switch access technology?",
+      "How can I test my content with a screen reader?"
+    ]
+  },
+  {
+    "tag": "Design & UX for Accessibility",
+    "patterns": [
+      "How do I design accessible user interfaces?",
+      "What are accessibility best practices for UX design?",
+      "How can I make my website navigation accessible?",
+      "What makes a good accessible form design?",
+      "How do I design for keyboard-only users?",
+      "What spacing and layout considerations support accessibility?",
+      "How should I design focus indicators?",
+      "What are accessible button and link design patterns?",
+      "How do I create an accessible mobile experience?",
+      "What font choices are most accessible?"
+    ]
+  },
+  {
+    "tag": "Course & Instructional Content Accessibility",
+    "patterns": [
+      "How do I make my course accessible?",
+      "What are accessibility requirements for Canvas courses?",
+      "How should I structure my course content for accessibility?",
+      "What makes online course materials accessible?",
+      "How do I ensure my syllabus is accessible?",
+      "What accessibility features should I use in my LMS?",
+      "How can I make synchronous class sessions accessible?",
+      "What are best practices for accessible online learning?",
+      "How do I accommodate diverse learners in my course design?",
+      "How can I make group work accessible for all students?"
+    ]
+  },
+  {
+    "tag": "Documents (Word, PDF, PowerPoint, Excel)",
+    "patterns": [
+      "How do I create an accessible Word document?",
+      "What makes a PDF accessible?",
+      "How can I make my PowerPoint slides accessible?",
+      "What are Excel accessibility best practices?",
+      "How do I add alt text in Word?",
+      "How should I structure headings in a document?",
+      "Can I make a scanned PDF accessible?",
+      "What's the best way to create an accessible PDF?",
+      "How do I check if my document is accessible?",
+      "Should I use PDF or Word for accessible documents?"
+    ]
+  },
+  {
+    "tag": "Multimedia (Video, Audio, Captions, AD)",
+    "patterns": [
+      "How do I add captions to my videos?",
+      "What is audio description and when do I need it?",
+      "Are auto-generated captions good enough?",
+      "How do I make YouTube videos accessible?",
+      "What are the requirements for video accessibility?",
+      "How should I create a transcript for audio content?",
+      "What's the difference between captions and subtitles?",
+      "Where can I get captioning services?",
+      "How do I add captions in Zoom recordings?",
+      "What makes good quality captions?"
+    ]
+  },
+  {
+    "tag": "Alt Text",
+    "patterns": [
+      "What is alt text and why is it important?",
+      "How do I write good alt text?",
+      "When should I use empty alt text?",
+      "How long should alt text be?",
+      "What should I include in alt text for charts?",
+      "How do I add alt text to images in Canvas?",
+      "Should I describe decorative images?",
+      "How do I write alt text for complex images?",
+      "What's the difference between alt text and captions?",
+      "Can I use the same text for alt text and captions?"
+    ]
+  },
+  {
+    "tag": "Assessments & Interactive Content",
+    "patterns": [
+      "How do I make quizzes accessible?",
+      "What are accessibility requirements for online exams?",
+      "How can I create accessible interactive assignments?",
+      "Are timed tests accessible?",
+      "How do I make simulations accessible?",
+      "What about accessibility for drag-and-drop activities?",
+      "How can I ensure fair assessment for students using assistive tech?",
+      "What are alternatives to inaccessible assessment tools?",
+      "How do I make H5P content accessible?",
+      "Can students using screen readers complete my assessments?"
+    ]
+  },
+  {
+    "tag": "Tools, Testing, and Audits",
+    "patterns": [
+      "What tools can I use to test accessibility?",
+      "How do I run an accessibility audit?",
+      "What is WAVE and how do I use it?",
+      "Can you recommend free accessibility checkers?",
+      "How do I test keyboard navigation?",
+      "What should I look for in an accessibility audit?",
+      "Are automated accessibility tests enough?",
+      "How accurate are accessibility scanning tools?",
+      "What is axe DevTools?",
+      "How often should I test my content for accessibility?"
+    ]
+  },
+  {
+    "tag": "Complex Content (Math, Data Viz)",
+    "patterns": [
+      "How do I make math equations accessible?",
+      "What is MathML and should I use it?",
+      "How can I make charts and graphs accessible?",
+      "What are best practices for accessible data visualization?",
+      "How do I create accessible scientific notation?",
+      "What tools help make STEM content accessible?",
+      "How should I describe statistical charts for screen readers?",
+      "Can I make interactive data visualizations accessible?",
+      "How do I make infographics accessible?",
+      "What's the best format for accessible mathematical content?"
+    ]
+  },
+  {
+    "tag": "Content Creation (Links, Lists, Tables)",
+    "patterns": [
+      "How do I write accessible link text?",
+      "What makes a good link description?",
+      "Should I avoid using 'click here' in links?",
+      "How do I create accessible lists?",
+      "What's the proper way to structure tables?",
+      "When should I use table headers?",
+      "How do I make complex tables accessible?",
+      "What are semantic HTML elements?",
+      "How should I format bulleted lists for accessibility?",
+      "What's wrong with using 'read more' as link text?"
+    ]
+  },
+  {
+    "tag": "Faculty Support, Training & Change Management",
+    "patterns": [
+      "Where can I get accessibility training?",
+      "Do you offer workshops on accessibility?",
+      "How can I help faculty learn about accessibility?",
+      "What resources are available for teaching accessibility?",
+      "Can you provide accessibility training for my department?",
+      "How do I convince colleagues that accessibility matters?",
+      "What support is available for making courses accessible?",
+      "Is there a checklist for faculty to follow?",
+      "Who can help me make my course materials accessible?",
+      "How long does it take to learn accessibility basics?"
+    ]
+  },
+  {
+    "tag": "Exceptions, Edge-Cases & Special Scenarios",
+    "patterns": [
+      "Are there exceptions to accessibility requirements?",
+      "What if third-party content isn't accessible?",
+      "How do I handle accessibility for legacy content?",
+      "What about accessibility for historical documents?",
+      "Can I get a waiver for inaccessible content?",
+      "What if making content accessible is too difficult?",
+      "How do I handle student-generated content accessibility?",
+      "What about accessibility during emergencies?",
+      "Are there specific accommodations for individual students?",
+      "What if the required textbook isn't accessible?"
+    ]
+  },
+  {
+    "tag": "Philosophy, Motivation & Value of Accessibility",
+    "patterns": [
+      "Why should I care about accessibility?",
+      "How does accessibility improve learning for everyone?",
+      "What is the social model of disability?",
+      "How does accessibility relate to universal design?",
+      "What is Universal Design for Learning?",
+      "How does accessibility support student success?",
+      "What are the benefits of proactive accessibility?",
+      "How does accessibility align with our mission?",
+      "Why is accessibility a moral imperative?",
+      "What is the business case for accessibility?"
+    ]
+  },
+  {
+    "tag": "Practical 'Where do I start?' / Getting Help",
+    "patterns": [
+      "Where do I start with accessibility?",
+      "I'm new to accessibility, what should I do first?",
+      "Can you help me make my content accessible?",
+      "Who should I contact for accessibility help?",
+      "What are the quick wins for accessibility?",
+      "How can I get started with minimal effort?",
+      "I have a tight deadline, what's most important?",
+      "What's the easiest way to improve accessibility?",
+      "Can someone review my course for accessibility?",
+      "I'm overwhelmed, where do I begin?"
+    ]
+  },
+  {
+    "tag": "Technical Implementation & ARIA",
+    "patterns": [
+      "What is ARIA and when should I use it?",
+      "How do I implement ARIA labels?",
+      "What are ARIA roles?",
+      "When is ARIA needed versus semantic HTML?",
+      "How do I make custom widgets accessible?",
+      "What are ARIA live regions?",
+      "How do I use aria-describedby?",
+      "What's the difference between ARIA and HTML semantics?",
+      "How do I implement accessible modals?",
+      "What are common ARIA mistakes to avoid?"
+    ]
+  },
+  {
+    "tag": "Color & Visual Design",
+    "patterns": [
+      "What is color contrast and why does it matter?",
+      "How do I check color contrast ratios?",
+      "What contrast ratio do I need for WCAG compliance?",
+      "Can I use color alone to convey information?",
+      "How do I design for colorblind users?",
+      "What colors are accessible together?",
+      "What tools can check my color contrast?",
+      "How do I make my color scheme accessible?",
+      "What about light text on dark backgrounds?",
+      "Are there accessible color palette generators?"
+    ]
+  },
+  {
+    "tag": "Headings & Structure",
+    "patterns": [
+      "How do I use heading levels correctly?",
+      "Why are headings important for accessibility?",
+      "What is document structure?",
+      "Should I skip heading levels?",
+      "How do screen readers use headings?",
+      "What's the difference between H1 and H2?",
+      "How many H1 headings should a page have?",
+      "How do I check if my headings are correct?",
+      "What makes good heading text?",
+      "Can I use headings just for styling?"
+    ]
+  },
+  {
+    "tag": "Third-Party & Vendor Content",
+    "patterns": [
+      "How do I evaluate third-party tools for accessibility?",
+      "What should I ask vendors about accessibility?",
+      "Is this publisher's content accessible?",
+      "What are VPATs and how do I read them?",
+      "How do I ensure purchased content is accessible?",
+      "What if a required tool isn't accessible?",
+      "How do I request accessibility information from vendors?",
+      "What questions should be in our RFP about accessibility?",
+      "Can we require vendors to provide accessible content?",
+      "How do I handle inaccessible third-party resources?"
+    ]
+  }
+]
+}

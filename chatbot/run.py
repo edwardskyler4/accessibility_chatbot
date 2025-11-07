@@ -52,6 +52,8 @@ while True:
     print(probs)
     prob = probs[0][predicted.item()] # type: ignore
 
+    print(prob.item())
+
     if prob.item() > 0.75:
         for intent in intents["intents"]:
             if tag == intent["tag"]:

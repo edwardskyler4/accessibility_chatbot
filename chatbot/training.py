@@ -3,11 +3,23 @@ import torch
 import torch.nn as nn
 import json
 import os
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader, random_split
+from torch.nn.utils.rnn import pad_sequence
 from model import NeuralNet
 import numpy as np
 
 nlp = spacy.load("en_core_web_lg")
+
+if os.name == "nt":
+    INTENTS_FILE = "chatbot\\intents.json"
+else:
+    INTENTS_FILE = "intents.json"
+
+def collate_fn(batch):
+    sequences = [torch.tensor(item[0]) for item in batch]
+    labels = [item[1] for item in batch]
+    padded_sequences = pad_sequence(sequences, batch_first=True, padding_value=0)
+    return padded_sequences, torch.tensor(labels)
 
 def stem(word):
     return nlp(word)
@@ -22,11 +34,6 @@ def bag_of_words(tokenized_sentence, words):
         if w in tokenized_sentence:
             bag[idx] = 1.0
     return bag
-
-if os.name == "nt":
-    INTENTS_FILE = "chatbot\\intents.json"
-else:
-    INTENTS_FILE = "intents.json"
 
 with open(INTENTS_FILE, "r") as f:
     intents = json.load(f)
@@ -77,10 +84,13 @@ def main():
     output_size = len(tags)
     input_size = len(all_words)
     learning_rate = 0.01
-    num_epochs = 1000
+    num_epochs = 5
 
     dataset = ChatDataset()
-    train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
+    train_ds, validate_ds, test_ds = random_split(dataset, [0.7, 0.2, 0.1])
+    train_loader = DataLoader(dataset=train_ds, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
+    validate_loader = DataLoader(dataset=validate_ds, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
+    test_loader = DataLoader(dataset=test_ds, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)
 
     model = NeuralNet(input_size, hidden_size, output_size)
 
@@ -89,7 +99,13 @@ def main():
 
     # Train loop
     for epoch in range(num_epochs):
+        trains = []
+        valids = []
+        similarity = 0
+        total = 0
+        model.train()
         for (words, labels) in train_loader:
+            trains.extend(labels)
             outputs = model(words)
             train_loss = criterion(outputs, labels)
 
@@ -97,15 +113,30 @@ def main():
             train_loss.backward()
             optimizer.step()
         
+        # Validate loop
+        model.eval()
+        for (words, labels) in validate_loader:
+            valids.extend(labels)
+            v_outputs = model(words)
+            v_loss = criterion(v_outputs, labels)
+
+        for i in trains:
+            total += 1
+            if i in valids:
+                similarity += 1
+
+        print(f"{epoch + 1} similarity score = {similarity}/{total}")
+
         if (epoch + 1) % 100 == 0:
-
-            """
-            I want to add some testing here, but I would also need to add testing data
-            """
-
-            print(f"Epoch: {epoch + 1}/{num_epochs}, Loss: {train_loss.item()}")
+            print(f"Epoch: {epoch + 1}/{num_epochs}, Train loss: {train_loss.item()} | Validate loss: {v_loss.item()}")
+    
+    # Test loop
+    model.eval()
+    for (words, labels) in test_loader:
+        test_outputs = model(words)
+        test_loss = criterion(test_outputs, labels)
         
-    print(f"Final loss: {train_loss.item()}")
+    print(f"\nFinal losses: \nTrain: {train_loss.item()}\nValidate: {v_loss.item()}\nTest: {test_loss.item()}")
 
 
     # Save data
