@@ -3,7 +3,6 @@ import random
 import torch
 import os
 from model import NeuralNet
-from training import bag_of_words, tokenize
 
 if os.name == "nt":
     INTENTS_FILE = "chatbot\\intents.json"
