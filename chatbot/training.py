@@ -72,7 +72,7 @@ def main():
     val_accs = []
     test_accs = []
 
-    for _ in range(5):
+    for _ in range(10):
         tags = []
         xy = []
 
@@ -113,7 +113,7 @@ def main():
         num_epochs = 1000
         dropout = 0.4
         weight_decay = 2e-4
-        learning_rate = 1e-3
+        learning_rate = 1e-4
 
         # Create datasets and dataloaders
         train_dataset = ChatDataset(X_train, y_train)
@@ -132,7 +132,7 @@ def main():
 
         # Set patience parameters
         best_val_accuracy = 0
-        patience = 60
+        patience = 75
         patience_counter = 0
 
         # Train loop
@@ -226,23 +226,23 @@ def main():
 
 
     # Save data
-    data = {
-        "model state": model.state_dict(),
-        "input size": input_size,
-        "hidden size": hidden_size,
-        "output size": output_size,
-        "intents text": xy,
-        "tags": tags
-    }
+    # data = {
+    #     "model state": model.state_dict(),
+    #     "input size": input_size,
+    #     "hidden size": hidden_size,
+    #     "output size": output_size,
+    #     "intents text": xy,
+    #     "tags": tags
+    # }
 
-    if os.name == "nt":
-        DATA_FILE = "chatbot\\model_data.pth"
-    else:
-        DATA_FILE = "model_data.pth"
+    # if os.name == "nt":
+    #     DATA_FILE = "chatbot\\model_data.pth"
+    # else:
+    #     DATA_FILE = "model_data.pth"
 
-    torch.save(data, DATA_FILE)
+    # torch.save(data, DATA_FILE)
 
-    print(f"Training complete. Data saved to {DATA_FILE}")
+    # print(f"Training complete. Data saved to {DATA_FILE}")
 
 if __name__ == "__main__":
     main()
