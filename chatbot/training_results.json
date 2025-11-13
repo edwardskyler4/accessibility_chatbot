@@ -1,0 +1,1 @@
+{"dropout": 0.4, "learning rate": 0.001, "weight decay": 0.0002, "patience": 60, "train accuracy": "92.34%", "validate accuracy": "60.43%", "test accuracy": "63.40%"}
