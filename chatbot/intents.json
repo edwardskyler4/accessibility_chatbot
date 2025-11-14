@@ -28,7 +28,12 @@
       "Does accessibility help all learners?",
       "What is inclusive pedagogy?",
       "Are there other types of disabilities other than vision or hearing to consider with web accessibility?",
-      "How do we make digital content more accessible for students with ADHD, dyslexia, or other cognitive disabilities?"
+      "How do we make digital content more accessible for students with ADHD, dyslexia, or other cognitive disabilities?",
+      "None of my students submitted an accommodation request. Do I still need to make my course accessible?",
+      "What is the difference between accessibility and accommodation?",
+      "Why do I need to make my documents accessible if I'm only sharing with other employees?",
+
+
     ]
   },
   {
@@ -145,34 +150,21 @@
       "How do I test keyboard navigation?",
       "What does keyboard-only access mean?",
       "Why is keyboard accessibility required?",
+      "Can a product be usable but not accessible?",
       "What is usability vs. accessibility?"
+      "What is Universal Design for Learning (UDL), and how does it relate to digital accessibility in the context of university courses?",
+
     ]
   },
+
   {
-    "tag": "Course & Instructional Content Accessibility",
+    "tag": "Course Content Accessibility",
     "patterns": [
-      "What is Universal Design for Learning (UDL), and how does it relate to digital accessibility in the context of university courses?",
-      "How do I know if I'm meeting accessibility standards for my online courses?",
-      "How would you communicate the best practices for creating accessible content for a mixed-ability classroom to them in a way that's both easy to understand and actionable?",
-      "How would you approach a conversation when a faculty member reaches out and says they are not sure how to make their online lectures accessible?",
-      "Can you provide an example of how to create accessible content that is also universally designed to be inclusive of all learning styles?",
-      "How can I make sure my course materials are accessible from the start, rather than having to retrofit accessibility later in the course design process?",
-      "How can we support students with neurodivergent conditions through accessible content design?",
       "How do I make sure to include accessibility through content planning, design, and decision making?",
-      "How does this affect student content?",
-      "How does this impact instructors and course content?",
-      "How does what I'm learning here connect to the accommodation letter I received?",
-      "How can I effectively communicate the importance of changing the format of their course materials to be more accessible?",
       "I use a lot of PowerPoint presentations in my courses. How do I make sure they are accessible for all students?",
       "In my course, I use Google Docs and sometimes I share links to files in Google Drive. What do I need to know about making sure these are accessible to all students?",
-      "Is access to accessible content an accommodation?",
-      "None of my students submitted an accommodation request. Do I still need to make my course accessible?",
       "Some of my course material is in the form of podcasts. How do I ensure students with hearing impairments can still access the content?",
       "How is this different than accommodations provided by Accessibility Services?",
-      "What can I do right now to increase the accessibility in my course?",
-      "What role do faculty members play in creating an accessible learning environment?",
-      "What is the difference between accessibility and accommodation?",
-      "How do I begin making my course more accessible?",
       "How do I evaluate whether my course is accessible?",
       "What disabilities do I need to consider when designing courses?",
       "How do I make content accessible for blind students?",
@@ -188,7 +180,6 @@
       "What navigation features support accessibility?",
       "How do I make discussion boards accessible?",
       "How do I support students who request accommodations?",
-      "Where do I refer students for disability services?",
       "How do I plan ahead for students with accessibility needs?",
       "How do I design accessible group work?",
       "How do I ensure accessibility in synchronous sessions?",
@@ -234,7 +225,6 @@
       "What are my options other than document remediation?",
       "What considerations are needed for making links in PDFs accessible?",
       "When I can use a PDF?",
-      "Why do I need to make my documents accessible if I'm only sharing with other employees?",
       "Can I post documents on my website?",
       "How can I tell if my document is accessible?",
       "How do I make Word documents accessible?",
@@ -263,6 +253,21 @@
       "How do I choose accessible templates?"
     ]
   },
+
+
+  {
+    "tag": "Teaching Accessibility",
+    "patterns": [
+      "How would you communicate the best practices for creating accessible content for a mixed-ability classroom to them in a way that's both easy to understand and actionable?",
+      "How would you approach a conversation when a faculty member reaches out and says they are not sure how to make their online lectures accessible?",
+      "How can I effectively communicate the importance of changing the format of their course materials to be more accessible?",
+      "What role do faculty members play in creating an accessible learning environment?",
+      "Can you provide an example of how to create accessible content that is also universally designed to be inclusive of all learning styles?",
+      "How does this impact instructors and course content?",
+
+    ]
+  },
+    
   {
     "tag": "Multimedia (Video, Audio, Captions, AD)",
     "patterns": [
@@ -468,7 +473,6 @@
   {
     "tag": "Philosophy, Motivation & Value of Accessibility",
     "patterns": [
-      "Can a product be usable but not accessible?",
       "How many disabilities are there?",
       "How many people are actually affected?",
       "Isn't it just for a small percentage of users? Is it really worth my time and effort?",
@@ -479,6 +483,7 @@
       "Why do accessibility standards keep changing? Wouldn't the issues still be the same?",
       "Why is it important to use <button> rather than a <div> or <span>?",
       "Why is the semantic structure important? The list looks the same no matter what",
+      "How does what I'm learning here connect to the accommodation letter I received?",
       "Why is using headings for style a bad practice?"
     ]
   },
@@ -486,11 +491,17 @@
     "tag": "Practical \"Where do I start?\" / Getting Help",
     "patterns": [
       "This is a lot of information, where do I start?",
+      "How do I know if I'm meeting accessibility standards for my online courses?",
       "What can I do now to get started?",
       "What are common accessibility mistakes?",
       "What are common accessibility violations and how can they be avoided?",
       "What are examples of digital content?",
-      "What is the most accessible format?"
+      "What is the most accessible format?",
+      "What can I do right now to increase the accessibility in my course?",
+      "How do I begin making my course more accessible?",
+      "Where do I refer students for disability services?",
+      "How can I make sure my course materials are accessible from the start, rather than having to retrofit accessibility later in the course design process?",
+
     ]
   },
   {
@@ -567,4 +578,5 @@
     ]
   }
 ]
+
 }
