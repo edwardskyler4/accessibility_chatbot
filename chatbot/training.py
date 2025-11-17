@@ -111,7 +111,7 @@ def main():
         output_size = len(tags)
         input_size = X_train[0].shape[0]
         num_epochs = 1000
-        dropout = 0.4
+        dropout = 0.3
         weight_decay = 2e-4
         learning_rate = 1e-4
 
