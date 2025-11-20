@@ -8,6 +8,9 @@ from torch.utils.data import Dataset, DataLoader
 from model import NeuralNet
 import numpy as np
 import copy
+import random
+import csv
+import time
 
 nlp = spacy.load("en_core_web_lg")
 
@@ -67,7 +70,7 @@ def track_results(train_acc, val_acc, test_acc, dropout, lr, weight_decay, patie
 with open(INTENTS_FILE, "r") as f:
     intents = json.load(f)
 
-def main():
+def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning_rate=1e-4, patience=75):
     train_accs = []
     val_accs = []
     test_accs = []
@@ -106,14 +109,14 @@ def main():
 
 
         # Hyperparameters
-        batch_size = 16
-        hidden_size = 64
+        # batch_size = 16
+        # hidden_size = 64
         output_size = len(tags)
         input_size = X_train[0].shape[0]
         num_epochs = 1000
-        dropout = 0.3
-        weight_decay = 2e-4
-        learning_rate = 1e-4
+        # dropout = 0.3
+        # weight_decay = 2e-4
+        # learning_rate = 1e-4
 
         # Create datasets and dataloaders
         train_dataset = ChatDataset(X_train, y_train)
@@ -132,7 +135,7 @@ def main():
 
         # Set patience parameters
         best_val_accuracy = 0
-        patience = 75
+        # patience = 75
         patience_counter = 0
 
         # Train loop
@@ -221,8 +224,9 @@ def main():
         avg_val_acc = np.mean(val_accs)
         avg_test_acc = np.mean(test_accs)
 
-    print(f"\nFinal results: \nTrain accuracy: {avg_train_acc:.2f}%\nValidate accuracy: {avg_val_acc:.2f}%\nTest accuracy: {avg_test_acc:.2f}%")
+    # print(f"\nFinal results: \nTrain accuracy: {avg_train_acc:.2f}%\nValidate accuracy: {avg_val_acc:.2f}%\nTest accuracy: {avg_test_acc:.2f}%")
     track_results(avg_train_acc, avg_val_acc, avg_test_acc, dropout=dropout, lr=learning_rate, weight_decay=weight_decay, patience=patience)
+    return avg_train_acc, avg_val_acc, avg_test_acc, epoch
 
 
     # Save data
@@ -244,5 +248,62 @@ def main():
 
     # print(f"Training complete. Data saved to {DATA_FILE}")
 
+def iterate_improve_parameters():
+    results = []
+
+    base_batch_size = 16
+    base_hidden_size = 64
+    base_dropout = 0.3
+    base_weight_decay = 0.0002
+    base_learning_rate = 0.0001
+    base_patience = 75
+
+    train_acc = 0
+    val_acc = 0
+    test_acc = 0
+
+    best_train_acc = 0
+    best_val_acc = 0
+    best_test_acc = 0
+
+    epoch_squared_count = 0
+
+    while True:
+        temp_batch_size = random.randrange(base_batch_size-2, base_batch_size+3)
+        temp_hidden_size = random.randrange(base_hidden_size-2, base_hidden_size+3)
+        temp_dropout = random.randrange(int(base_dropout * 10)-1, int(base_dropout * 10)+3) / 10
+        temp_weight_decay = random.randrange(int(base_weight_decay * 100000)-2, int(base_weight_decay * 100000)+3) / 100000
+        temp_learning_rate = random.randrange(int(base_learning_rate * 100000)-2, int(base_learning_rate * 100000)+3) / 100000
+        temp_patience = random.randrange(base_patience-5, base_patience+6)
+
+        train_acc, val_acc, test_acc, highest_epoch = main(temp_batch_size, temp_hidden_size, temp_dropout, temp_weight_decay, temp_learning_rate, temp_patience)
+
+        if val_acc >= best_val_acc:
+            best_train_acc = train_acc
+            best_val_acc = val_acc
+            best_test_acc = test_acc
+
+            base_batch_size = temp_batch_size
+            base_hidden_size = temp_hidden_size
+            base_dropout = temp_dropout
+            base_weight_decay = temp_weight_decay
+            base_learning_rate = temp_learning_rate
+            base_patience = temp_patience
+
+        results = [f"{train_acc:.2f}%", f"{val_acc:.2f}%", f"{test_acc:.2f}%", temp_batch_size, temp_hidden_size, temp_dropout, temp_weight_decay, temp_learning_rate, temp_patience, highest_epoch]
+
+        with open("chatbot\\training_results.csv", "a", newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(results)
+            
+        epoch_squared_count += 1
+        print(f"Test {epoch_squared_count} completed. Current best scores:\nTraining: {best_train_acc:.2f}%\nValidation: {best_val_acc:.2f}%\nTest: {best_test_acc:.2f}\n Commencing next test in...")
+        countdown = 5
+        for _ in range(5):
+            print(countdown)
+            time.sleep(1)
+            countdown -= 1
+
+
 if __name__ == "__main__":
-    main()
+    iterate_improve_parameters()
