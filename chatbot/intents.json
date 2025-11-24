@@ -31,7 +31,7 @@
       "How do we make digital content more accessible for students with ADHD, dyslexia, or other cognitive disabilities?",
       "None of my students submitted an accommodation request. Do I still need to make my course accessible?",
       "What is the difference between accessibility and accommodation?",
-      "Why do I need to make my documents accessible if I'm only sharing with other employees?",
+      "Why do I need to make my documents accessible if I'm only sharing with other employees?"
 
 
     ]
@@ -351,7 +351,7 @@
       "When should I intentionally leave the alt attribute empty (null alt text)?",
       "Is there a simple rule to determine if an image is decorative or informative?",
       "Should I include the words image of or picture of when writing alt text?",
-      "How can I use long descriptions (or D-links) for highly detailed diagrams instead of short alt text?",
+      "How can I use long descriptions (or D-links) for highly detailed diagrams instead of short alt text?"
       
       
     ]
@@ -586,7 +586,7 @@
       "What are ARIA labels?",
       "Should instructors use ARIA roles?",
       "What is the appropriate use of aria-hidden=true versus simply removing an element from the DOM?",
-      "What are the key rules of using ARIA, especially the concept of First Rule of ARIA?",
+      "What are the key rules of using ARIA, especially the concept of First Rule of ARIA?"
       
     ]
   },
@@ -673,4 +673,5 @@
 ]
 
 }
+
 
