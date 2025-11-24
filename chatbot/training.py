@@ -107,7 +107,7 @@ def main():
 
         # Hyperparameters
         batch_size = 16
-        hidden_size = 32
+        hidden_size = 128
         output_size = len(tags)
         input_size = X_train[0].shape[0]
         num_epochs = 1000
