@@ -112,8 +112,8 @@ def main():
         input_size = X_train[0].shape[0]
         num_epochs = 1000
         dropout = 0.5
-        weight_decay = 1e-3
-        learning_rate = 1e-4
+        weight_decay = 5e-4
+        learning_rate = 5e-4
 
         # Create datasets and dataloaders
         train_dataset = ChatDataset(X_train, y_train)
