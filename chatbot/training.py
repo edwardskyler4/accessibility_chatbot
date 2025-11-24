@@ -111,8 +111,8 @@ def main():
         output_size = len(tags)
         input_size = X_train[0].shape[0]
         num_epochs = 1000
-        dropout = 0.4
-        weight_decay = 2e-4
+        dropout = 0.5
+        weight_decay = 1e-3
         learning_rate = 1e-4
 
         # Create datasets and dataloaders
@@ -132,7 +132,7 @@ def main():
 
         # Set patience parameters
         best_val_accuracy = 0
-        patience = 75
+        patience = 50
         patience_counter = 0
 
         # Train loop
