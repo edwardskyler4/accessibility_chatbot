@@ -8,6 +8,7 @@ from torch.utils.data import Dataset, DataLoader
 from model import NeuralNet
 import numpy as np
 import copy
+import random
 
 nlp = spacy.load("en_core_web_lg")
 
@@ -28,6 +29,17 @@ def clean_data(text, nlp_model):
     return np.zeros(nlp_model.vocab.vectors.shape[1])
 
   return nlp_model(new_text).vector
+
+def augment_data(pattern, nlp_model):
+  doc_1 = nlp_model(pattern)
+
+  words = []
+  for token in doc_1:
+    if random.random() > 0.1 or token.pos_ in ['VERB', 'NOUN']:
+      words.append(token.text)
+
+  return ' '.join(words) if words else pattern
+
 
 def make_vector_tensors(data, tags):
     X, y = [], []
@@ -97,7 +109,15 @@ def main():
             for pattern in intent["patterns"]:
                 xy.append((pattern, tag))
 
+        augmented_xy = xy.copy()
+        for pattern, tag in xy:
+
+          if random.random() > 0.5:
+            augmented_xy.append((augment_data(pattern, nlp), tag))
+        xy = augmented_xy
+
         tags = sorted(set(tags))
+
 
         # Split and format data (intents)
         train_data, val_data, test_data = randomize_and_split_data(xy, validate_split=0.2, test_split=0.1)
@@ -267,4 +287,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
 
