@@ -16,10 +16,25 @@ if os.name == "nt":
 else:
     INTENTS_FILE = "intents.json"
 
+def clean_data(text, nlp_model):
+  doc = nlp_model(text.lower())
+
+  filtered_tokens = [ token.lemma_ for token in doc
+  if not token.is_stop and not token.is_punct and token.has_vector]
+
+  new_text = " ".join(filtered_tokens)
+
+  if not new_text:
+    return np.zeros(nlp_model.vocab.vectors.shape[1])
+
+  return nlp_model(new_text).vector
+
 def make_vector_tensors(data, tags):
     X, y = [], []
     for pattern, tag in data:
-        X.append(torch.tensor(np.array(nlp(pattern).vector), dtype=torch.float))
+        cool_array = clean_data(pattern, nlp)
+
+        X.append(torch.tensor(cool_array, dtype=torch.float))
         y.append(tags.index(tag))
     return X, y
 
@@ -110,10 +125,14 @@ def main():
         hidden_size = 64
         output_size = len(tags)
         input_size = X_train[0].shape[0]
+
         num_epochs = 1000
         dropout = 0.4
-        weight_decay = 5e-4
-        learning_rate = 5e-4
+        weight_decay = 5e-3
+        learning_rate = 1e-2
+
+        step_size = 150
+        gamha = 0.7
 
         # Create datasets and dataloaders
         train_dataset = ChatDataset(X_train, y_train)
@@ -127,8 +146,9 @@ def main():
         # Create model
         model = NeuralNet(input_size, hidden_size, output_size, dropout=dropout)
 
-        criterion = nn.CrossEntropyLoss()
-        optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+        criterion = nn.CrossEntropyLoss(label_smoothing=0.15)
+        optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, weight_decay=weight_decay, momentum=0.9)
+        scheduler = torch.optim.lr_scheduler.StepLR( optimizer, step_size=step_size, gamma = gamha)
 
         # Set patience parameters
         best_val_accuracy = 0
@@ -155,6 +175,7 @@ def main():
                 train_total += labels.size(0)
                 train_correct += (predicted == labels).sum().item()
             
+            scheduler.step()
             train_loss /= len(train_loader)
             train_accuracy = 100 * train_correct / train_total
 
@@ -246,3 +267,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
