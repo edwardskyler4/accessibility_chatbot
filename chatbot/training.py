@@ -11,6 +11,7 @@ import copy
 import random
 import csv
 import time
+import pickle
 
 nlp = spacy.load("en_core_web_lg")
 
@@ -25,6 +26,49 @@ def make_vector_tensors(data, tags):
         X.append(torch.tensor(np.array(nlp(pattern).vector), dtype=torch.float))
         y.append(tags.index(tag))
     return X, y
+
+def augment_data(pattern, nlp_model):
+    doc_1 = nlp_model(pattern)
+
+    words = []
+    for token in doc_1:
+        if random.random() > 0.1 or token.pos_ in ['VERB', 'NOUN']:
+            words.append(token.text)
+
+        return ' '.join(words) if words else pattern
+
+def save_tokens():
+    tags = []
+    xy = []
+
+    for intent in intents["intents"]:
+        tag = intent["tag"]
+        tags.append(tag)
+        for pattern in intent["patterns"]:
+            xy.append((pattern, tag))
+    
+    augmented_xy = xy.copy()
+    for pattern, tag in xy:
+        if random.random() > 0.5:
+            augmented_xy.append((augment_data(pattern, nlp), tag))
+    xy = augmented_xy
+
+    tags = sorted(set(tags))
+    output_size = len(tags)
+
+    # Split and tokenize data (intents)
+    train_data, val_data, test_data = randomize_and_split_data(xy, validate_split=0.2, test_split=0.1)
+
+    X_train, y_train = make_vector_tensors(train_data, tags)
+    X_val, y_val = make_vector_tensors(val_data, tags)
+    X_test, y_test = make_vector_tensors(test_data, tags)
+
+    with open("tokenized.pkl", "wb") as f:
+        pickle.dump((X_train, y_train, X_val, y_val, X_test, y_test, output_size), f)
+
+def load_tokens():
+    with open("tokenized.pkl", "rb") as f:
+        return pickle.load(f)
 
 def collate_fn(batch):
     X = torch.stack([item[0] for item in batch])
@@ -70,30 +114,15 @@ def track_results(train_acc, val_acc, test_acc, dropout, lr, weight_decay, patie
 with open(INTENTS_FILE, "r") as f:
     intents = json.load(f)
 
-def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning_rate=1e-4, patience=75):
+def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning_rate=1e-4, patience=75, num_runs=3):
+    vectors = nlp.vocab.vectors.data.copy()
     train_accs = []
     val_accs = []
     test_accs = []
 
-    for _ in range(10):
-        tags = []
-        xy = []
+    X_train, y_train, X_val, y_val, X_test, y_test, output_size = load_tokens()
 
-        for intent in intents["intents"]:
-            tag = intent["tag"]
-            tags.append(tag)
-            for pattern in intent["patterns"]:
-                xy.append((pattern, tag))
-
-        tags = sorted(set(tags))
-
-        # Split and format data (intents)
-        train_data, val_data, test_data = randomize_and_split_data(xy, validate_split=0.2, test_split=0.1)
-
-        X_train, y_train = make_vector_tensors(train_data, tags)
-        X_val, y_val = make_vector_tensors(val_data, tags)
-        X_test, y_test = make_vector_tensors(test_data, tags)
-
+    for _ in range(num_runs):
         # Define dataset class
         class ChatDataset(Dataset):
             def __init__(self, X, y):
@@ -111,8 +140,6 @@ def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning
         # Hyperparameters
         # batch_size = 16
         # hidden_size = 64
-        output_size = len(tags)
-        input_size = X_train[0].shape[0]
         num_epochs = 1000
         # dropout = 0.3
         # weight_decay = 2e-4
@@ -128,7 +155,7 @@ def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning
         test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, collate_fn=collate_fn)
 
         # Create model
-        model = NeuralNet(input_size, hidden_size, output_size, dropout=dropout)
+        model = NeuralNet(vectors=vectors, hidden_size=hidden_size, output_size=output_size, dropout=dropout)
 
         criterion = nn.CrossEntropyLoss()
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
@@ -189,12 +216,12 @@ def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning
                 patience_counter += 1
 
             if patience_counter >= patience:
-                # print(f"\nEarly stopping at epoch {epoch + 1}")
+                print(f"\nEarly stopping at epoch {epoch + 1}")
                 break
 
             # Print training progress
-            # if (epoch + 1) % 50 == 0:
-                # print(f"Epoch: {epoch + 1}/{num_epochs}, Train loss: {train_loss}  - Accuracy: {train_accuracy:.2f} | Validate loss: {val_loss} - Accuracy: {val_accuracy:.2f}")
+            if (epoch + 1) % 50 == 0:
+                print(f"Epoch: {epoch + 1}/{num_epochs}, Train loss: {train_loss}  - Accuracy: {train_accuracy:.2f} | Validate loss: {val_loss} - Accuracy: {val_accuracy:.2f}")
         
         # Test loop
         model.load_state_dict(best_model_state)
@@ -224,9 +251,9 @@ def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning
         avg_val_acc = np.mean(val_accs)
         avg_test_acc = np.mean(test_accs)
 
-    # print(f"\nFinal results: \nTrain accuracy: {avg_train_acc:.2f}%\nValidate accuracy: {avg_val_acc:.2f}%\nTest accuracy: {avg_test_acc:.2f}%")
+    print(f"\nFinal results: \nTrain accuracy: {avg_train_acc:.2f}%\nValidate accuracy: {avg_val_acc:.2f}%\nTest accuracy: {avg_test_acc:.2f}%")
     track_results(avg_train_acc, avg_val_acc, avg_test_acc, dropout=dropout, lr=learning_rate, weight_decay=weight_decay, patience=patience)
-    return avg_train_acc, avg_val_acc, avg_test_acc, epoch
+    # return avg_train_acc, avg_val_acc, avg_test_acc, epoch
 
 
     # Save data
@@ -306,4 +333,6 @@ def iterate_improve_parameters():
 
 
 if __name__ == "__main__":
-    iterate_improve_parameters()
+    # iterate_improve_parameters()
+    # save_tokens()
+    main()
