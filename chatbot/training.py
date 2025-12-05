@@ -115,7 +115,6 @@ with open(INTENTS_FILE, "r") as f:
     intents = json.load(f)
 
 def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning_rate=1e-4, patience=75, num_runs=3):
-    vectors = nlp.vocab.vectors.data.copy()
     train_accs = []
     val_accs = []
     test_accs = []
@@ -141,6 +140,7 @@ def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning
         # batch_size = 16
         # hidden_size = 64
         num_epochs = 1000
+        input_size = X_train[0].shape[0]
         # dropout = 0.3
         # weight_decay = 2e-4
         # learning_rate = 1e-4
@@ -155,7 +155,7 @@ def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning
         test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, collate_fn=collate_fn)
 
         # Create model
-        model = NeuralNet(vectors=vectors, hidden_size=hidden_size, output_size=output_size, dropout=dropout)
+        model = NeuralNet(input_size=input_size, hidden_size=hidden_size, output_size=output_size, dropout=dropout)
 
         criterion = nn.CrossEntropyLoss()
         optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
@@ -252,8 +252,8 @@ def main(batch_size=16, hidden_size=62, dropout=0.3, weight_decay=2e-4, learning
         avg_test_acc = np.mean(test_accs)
 
     print(f"\nFinal results: \nTrain accuracy: {avg_train_acc:.2f}%\nValidate accuracy: {avg_val_acc:.2f}%\nTest accuracy: {avg_test_acc:.2f}%")
-    track_results(avg_train_acc, avg_val_acc, avg_test_acc, dropout=dropout, lr=learning_rate, weight_decay=weight_decay, patience=patience)
-    # return avg_train_acc, avg_val_acc, avg_test_acc, epoch
+    # track_results(avg_train_acc, avg_val_acc, avg_test_acc, dropout=dropout, lr=learning_rate, weight_decay=weight_decay, patience=patience)
+    return avg_train_acc, avg_val_acc, avg_test_acc, epoch
 
 
     # Save data
@@ -334,5 +334,5 @@ def iterate_improve_parameters():
 
 if __name__ == "__main__":
     # iterate_improve_parameters()
-    # save_tokens()
+    save_tokens()
     main()
