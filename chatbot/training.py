@@ -2,6 +2,7 @@ import spacy
 import torch
 import torch.nn as nn
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
 import json
 import os
 from torch.utils.data import Dataset, DataLoader
@@ -236,6 +237,10 @@ def main():
         
         # Test loop
         model.load_state_dict(best_model_state)
+
+        all_targets = []
+        all_preds = []
+
         model.eval()
         test_loss = 0
         test_correct = 0
@@ -250,6 +255,17 @@ def main():
                 _, predicted = torch.max(test_outputs, 1)
                 test_total += labels.size(0)
                 test_correct += (predicted == labels).sum().item()
+
+                all_targets.append(labels)
+                all_preds.append(predicted)
+        
+        #confusion matrix
+        y_true = (torch.cat(all_targets)).numpy()
+        y_pred = (torch.cat(all_preds)).numpy()
+
+        intent_names = ["General Accessibility Awareness & Culture", "Laws, Policy, Compliance & Governance", "WCAG-Specific Guidance", "Assistive Technologies & Screen Readers",  "Design & UX for Accessibility",]
+
+        cm = confusion_matrix(y_true, y_pred)
 
         test_loss /= len(test_loader)
         test_accuracy = 100 * test_correct / test_total
