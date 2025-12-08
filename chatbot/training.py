@@ -10,6 +10,8 @@ from model import NeuralNet
 import numpy as np
 import copy
 import random
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 nlp = spacy.load("en_core_web_lg")
 
@@ -100,7 +102,7 @@ def main():
     val_accs = []
     test_accs = []
 
-    for _ in range(10):
+    for _ in range(1):
         tags = []
         xy = []
 
@@ -259,13 +261,8 @@ def main():
                 all_targets.append(labels)
                 all_preds.append(predicted)
         
-        #confusion matrix
-        y_true = (torch.cat(all_targets)).numpy()
-        y_pred = (torch.cat(all_preds)).numpy()
 
-        intent_names = ["General Accessibility Awareness & Culture", "Laws, Policy, Compliance & Governance", "WCAG-Specific Guidance", "Assistive Technologies & Screen Readers",  "Design & UX for Accessibility",]
 
-        cm = confusion_matrix(y_true, y_pred)
 
         test_loss /= len(test_loader)
         test_accuracy = 100 * test_correct / test_total
@@ -280,7 +277,22 @@ def main():
 
     print(f"\nFinal results: \nTrain accuracy: {avg_train_acc:.2f}%\nValidate accuracy: {avg_val_acc:.2f}%\nTest accuracy: {avg_test_acc:.2f}%")
     track_results(avg_train_acc, avg_val_acc, avg_test_acc, dropout=dropout, lr=learning_rate, weight_decay=weight_decay, patience=patience)
+        
+    #confusion matrix
+    y_true = (torch.cat(all_targets)).numpy()
+    y_pred = (torch.cat(all_preds)).numpy()
 
+    intent_names = ["General Accessibility Awareness & Culture", "Laws, Policy, Compliance & Governance", "WCAG-Specific Guidance", "Assistive Technologies & Screen Readers",  "Design & UX for Accessibility", "Course Content Accessibility", "Documents (Word, PDF, PowerPoint, Excel)", "Teachers Accessibility Training", "Multimedia (Video, Audio, Captions, AD)", "Alt Text", "Assessments & Interactive Content", "Tools, Testing, and Audits", "Complex Content (Math, Data Viz)", "Content Creation (Links, Lists, Tables)", "Faculty Support, Training & Change Management", "Exceptions, Edge-Cases & Special Scenarios", "Philosophy, Motivation & Value of Accessibility", "Practical \"Where do I start?\" / Getting Help", "Technical Implementation & ARIA", "Color & Visual Design", "Headings & Structure", "Third-Party & Vendor Content"]
+
+    cm = confusion_matrix(y_true, y_pred)
+    plt.figure(figsize=(12,10))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=intent_names, yticklabels=intent_names)
+
+    plt.xlabel('Predicted Intent')
+    plt.ylabel('True Intent')
+    plt.title ('Confusion Matrix')
+    
+    plt.show()
 
     # Save data
     # data = {
