@@ -102,7 +102,13 @@ def main():
     val_accs = []
     test_accs = []
 
-    for _ in range(1):
+    #Confusion Matrix
+    intent_names = ["General Accessibility Awareness & Culture", "Laws, Policy, Compliance & Governance", "WCAG-Specific Guidance", "Assistive Technologies & Screen Readers",  "Design & UX for Accessibility", "Course Content Accessibility", "Documents (Word, PDF, PowerPoint, Excel)", "Teachers Accessibility Training", "Multimedia (Video, Audio, Captions, AD)", "Alt Text", "Assessments & Interactive Content", "Tools, Testing, and Audits", "Complex Content (Math, Data Viz)", "Content Creation (Links, Lists, Tables)", "Faculty Support, Training & Change Management", "Exceptions, Edge-Cases & Special Scenarios", "Philosophy, Motivation & Value of Accessibility", "Practical \"Where do I start?\" / Getting Help", "Technical Implementation & ARIA", "Color & Visual Design", "Headings & Structure", "Third-Party & Vendor Content"]
+    num_classes = len(intent_names)
+    aggregate_cm = np.zeros((num_classes, num_classes), dtype=int)
+
+
+    for _ in range(5):
         tags = []
         xy = []
 
@@ -221,6 +227,8 @@ def main():
             val_loss /= len(validate_loader)
             val_accuracy = 100 * val_correct / val_total
 
+            
+
             # Early stop
             if val_accuracy > best_val_accuracy:
                 best_val_accuracy = val_accuracy
@@ -239,9 +247,10 @@ def main():
         
         # Test loop
         model.load_state_dict(best_model_state)
-
+        
         all_targets = []
         all_preds = []
+
 
         model.eval()
         test_loss = 0
@@ -257,11 +266,16 @@ def main():
                 _, predicted = torch.max(test_outputs, 1)
                 test_total += labels.size(0)
                 test_correct += (predicted == labels).sum().item()
-
+                
+                #Confusion Matrix
                 all_targets.append(labels)
                 all_preds.append(predicted)
-        
 
+        #Confusion Matrix   
+        y_true = (torch.cat(all_targets)).numpy()
+        y_pred = (torch.cat(all_preds)).numpy() 
+        cm = confusion_matrix(y_true, y_pred)
+        aggregate_cm += cm
 
 
         test_loss /= len(test_loader)
@@ -279,14 +293,11 @@ def main():
     track_results(avg_train_acc, avg_val_acc, avg_test_acc, dropout=dropout, lr=learning_rate, weight_decay=weight_decay, patience=patience)
         
     #confusion matrix
-    y_true = (torch.cat(all_targets)).numpy()
-    y_pred = (torch.cat(all_preds)).numpy()
 
-    intent_names = ["General Accessibility Awareness & Culture", "Laws, Policy, Compliance & Governance", "WCAG-Specific Guidance", "Assistive Technologies & Screen Readers",  "Design & UX for Accessibility", "Course Content Accessibility", "Documents (Word, PDF, PowerPoint, Excel)", "Teachers Accessibility Training", "Multimedia (Video, Audio, Captions, AD)", "Alt Text", "Assessments & Interactive Content", "Tools, Testing, and Audits", "Complex Content (Math, Data Viz)", "Content Creation (Links, Lists, Tables)", "Faculty Support, Training & Change Management", "Exceptions, Edge-Cases & Special Scenarios", "Philosophy, Motivation & Value of Accessibility", "Practical \"Where do I start?\" / Getting Help", "Technical Implementation & ARIA", "Color & Visual Design", "Headings & Structure", "Third-Party & Vendor Content"]
 
-    cm = confusion_matrix(y_true, y_pred)
+
     plt.figure(figsize=(12,10))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=intent_names, yticklabels=intent_names)
+    sns.heatmap(aggregate_cm, annot=True, fmt='d', cmap='Blues', xticklabels=intent_names, yticklabels=intent_names, robust=True )
 
     plt.xlabel('Predicted Intent')
     plt.ylabel('True Intent')
