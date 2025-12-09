@@ -13,6 +13,11 @@ import random
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+SEED = 42
+random.seed(SEED)
+np.random.seed(SEED)
+torch.manual_seed(SEED)
+
 nlp = spacy.load("en_core_web_lg")
 
 if os.name == "nt":
@@ -38,7 +43,7 @@ def augment_data(pattern, nlp_model):
 
   words = []
   for token in doc_1:
-    if random.random() > 0.1 or token.pos_ in ['VERB', 'NOUN']:
+    if random.random() > 0.1 or token.pos_ in ['VERB', 'NOUN', 'PROPN', 'ADJ']:
       words.append(token.text)
 
   return ' '.join(words) if words else pattern
@@ -297,7 +302,7 @@ def main():
 
 
     plt.figure(figsize=(12,10))
-    sns.heatmap(aggregate_cm, annot=True, fmt='d', cmap='Blues', xticklabels=intent_names, yticklabels=intent_names, robust=True )
+    sns.heatmap(aggregate_cm, annot=True, fmt='d', cmap='rocket', xticklabels=intent_names, yticklabels=intent_names, robust=True )
 
     plt.xlabel('Predicted Intent')
     plt.ylabel('True Intent')
@@ -326,6 +331,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
 
 
 
