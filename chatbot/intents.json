@@ -1,5 +1,6 @@
-{ 
-    "intents": 
+
+{
+    "intents":
 [
   {
     "tag": "General Accessibility Awareness & Culture",
@@ -32,8 +33,8 @@
       "None of my students submitted an accommodation request. Do I still need to make my course accessible?",
       "What is the difference between accessibility and accommodation?",
       "Why do I need to make my documents accessible if I'm only sharing with other employees?"
-
-
+ 
+ 
     ]
   },
   {
@@ -65,6 +66,7 @@
   {
     "tag": "WCAG-Specific Guidance",
     "patterns": [
+
       "How should accessibility considerations differ for public-facing vs. internal university content?",
       "Can you explain website accessibility standards in simple terms?",
       "Are there levels of accessibility?",
@@ -133,10 +135,12 @@
   {
     "tag": "Design & UX for Accessibility",
     "patterns": [
+      "Why can’t I use table cells for my site layout?",
       "Can you explain the difference between a \"keyboard-accessible\" design and one that isn't? Why is keyboard accessibility important?",
       "Do I have to \"dumb down\" my site in order to make it accessible?",
       "Do I have to sacrifice aesthetics of my website in order to make it accessible?",
       "Does this mean I need to create a text-only version of my site?",
+      "How will this change the way my canvas looks?",
       "How can I make my content accessible without compromising the overall design and user experience?",
       "How do I balance design with accessibility?",
       "How can haptic feedback in devices be designed to be accessible?",
@@ -154,14 +158,15 @@
       "What is usability vs. accessibility?",
       "What is Universal Design for Learning (UDL), and how does it relate to digital accessibility in the context of university courses?",
       "Why is it important to use <button> rather than a <div> or <span>?"
-
-
+ 
+ 
     ]
   },
-
+ 
   {
     "tag": "Course Content Accessibility",
     "patterns": [
+      "Should I use a PDF if I want to create an accessible course?",
       "How do I make sure to include accessibility through content planning, design, and decision making?",
       "In my course, I use Google Docs and sometimes I share links to files in Google Drive. What do I need to know about making sure these are accessible to all students?",
       "Some of my course material is in the form of podcasts. How do I ensure students with hearing impairments can still access the content?",
@@ -212,6 +217,7 @@
   {
     "tag": "Documents (Word, PDF, PowerPoint, Excel)",
     "patterns": [
+      "How can I make a locked Excel table accessible?",
       "Are there tools or plugins that can help automate some aspects of PDF accessibility to make the process quicker and easier?",
       "How would you advise a department to make a scanned PDF more accessible?",
       "Can't Excel make accessible tables?",
@@ -254,11 +260,12 @@
       "How do I choose accessible templates?"
     ]
   },
-
-
+ 
+ 
   {
     "tag": "Teachers Accessibility Training",
     "patterns": [
+      "What would be a good activity for empathy training?",
       "How would you communicate the best practices for creating accessible content for a mixed-ability classroom to them in a way that's both easy to understand and actionable?",
       "How can I effectively communicate the importance of changing the format of their course materials to be more accessible?",
       "How would you approach a conversation when a faculty member reaches out and says they are not sure how to make their online lectures accessible?",
@@ -280,17 +287,18 @@
       "I am trying to explain formatting to a teacher, how can I explain that to someone that has little to no knowledge about accessibility",
       "How can faculty use alternative input methods (like voice or touch) to accommodate different student needs?",
       "What is the process for faculty to ensure external web links and resources they use are also accessible?"
-      
-      
-      
-      
-
+     
+     
+     
+     
+ 
     ]
   },
-    
+   
   {
     "tag": "Multimedia (Video, Audio, Captions, AD)",
     "patterns": [
+      "What should happen when the Audio Description exceeds the available time in a video?",
       "How do I know if my captions meet the requirements?",
       "Do I have to caption all of my videos?",
       "How can I make multimedia content accessible for all users?",
@@ -332,7 +340,7 @@
   {
     "tag": "Alt Text",
     "patterns": [
-      "How do I make sure that images, including decorative ones, are accessible to users with screen readers?",
+    "How do I make sure that images, including decorative ones, are accessible to users with screen readers?",
       "How do you verify the quality of alt text, and what changes might need to be made to improve accessibility?",
       "Can you explain what alt text is and how to write good alt text for images or charts in my course materials?",
       "How do I write useful text equivalents for complex images, such as charts and graphs?",
@@ -351,9 +359,9 @@
       "When should I intentionally leave the alt attribute empty (null alt text)?",
       "Is there a simple rule to determine if an image is decorative or informative?",
       "Should I include the words image of or picture of when writing alt text?",
-      "How can I use long descriptions (or D-links) for highly detailed diagrams instead of short alt text?"
-      
-      
+      "How can I use long descriptions (or D-links) for highly detailed diagrams instead of short alt text?",
+      "What are things to avoid when writing Alt text"
+     
     ]
   },
   {
@@ -378,7 +386,7 @@
       "How do I ensure that all form fields (like text boxes) in an embedded third-party tool within Canvas are properly labeled?",
       "How can I ensure students relying on keyboard navigation can successfully complete a drag-and-drop activity in Canvas?",
       "Is it possible to provide alternative instructions for a complex assignment directly within the Canvas setup for specific students?",
-      "How do I make sure that time limits on quizzes don't become an accessibility barrier in Canvas?"   
+      "How do I make sure that time limits on quizzes don't become an accessibility barrier in Canvas?"  
          
     ]
   },
@@ -391,6 +399,8 @@
       "If a website fails an accessibility audit, what should be the first steps taken to begin remediation?",
       "Can't I just do manual testing then?",
       "What are the best practices for auditing a website or content for accessibility?",
+      "What is the process of testing a website?",
+      "How do I prepare a website to be tested?",
       "What are the limitations of automated accessibility testing tools, and why is manual testing still essential?",
       "What tools are available to check digital accessibility?",
       "How do I evaluate my entire website for accessibility errors?",
@@ -398,10 +408,12 @@
       "How do we track and measure improvements in accessibility over time?",
       "How can I check if the color contrast is sufficient?",
       "Where is the accessibility checker in Canvas?",
+      "What are the different tools used to check websites?",
       "What is a VPAT?",
       "How do I interpret a VPAT?",
       "How do I evaluate vendor accessibility claims?",
       "Do I need approval before choosing new software?",
+      "Who can I check with for recommendations to make",
       "How do I check accessibility in Adobe tools?",
       "What accessibility tools should I install?",
       "What automated checkers work for beginners?",
@@ -498,11 +510,15 @@
     "tag": "Exceptions, Edge-Cases & Special Scenarios",
     "patterns": [
       "Are there any exceptions to what needs to be accessible?",
+      "How can I as a teacher get an exception?",
+      "Who do I talk to get an expedition?",
+      "Who can I talk to for more information?", 
       "Can my content get an exception?",
       "Do I need to make all my past digital content accessible, or just new content moving forward?",
       "Do I need to make my content accessible even if there is no one with a disability using my content?",
       "Does all this digital accessibility stuff apply to emails?",
       "Does this limit my academic freedom?",
+      "Is there a list of things for exceptions?",
       "How do we ensure accessibility in legacy content, and what challenges might arise when retrofitting older materials?",
       "How do we ensure accessibility in ongoing content updates or changes?",
       "I've made my content accessible, but how do I ensure it remains accessible when updates or changes are made?",
@@ -539,7 +555,7 @@
       "How does a proactive approach to accessibility affect the student experience overall?",
       "What ethical frameworks support the mandate for educational accessibility?",
       "Why is it important to consider the needs of aging faculty and students when designing materials?"
-      
+     
     ]
   },
   {
@@ -564,8 +580,8 @@
       "What is the difference between a disability service provider and an accessibility specialist on campus?",
       "What internal contacts or departments can assist faculty with accessibility testing?",
       "What is the best way to audit an entire course without spending too much time?"
-      
-
+     
+ 
     ]
   },
   {
@@ -587,7 +603,7 @@
       "Should instructors use ARIA roles?",
       "What is the appropriate use of aria-hidden=true versus simply removing an element from the DOM?",
       "What are the key rules of using ARIA, especially the concept of First Rule of ARIA?"
-      
+     
     ]
   },
   {
@@ -640,8 +656,8 @@
       "Is it acceptable to have an empty section or a section without a visible heading?",
       "How do I correct a skipped heading level (e.g., jumping from H2 to H4) in my document?",
       "Are there any exceptions where I can use a heading only for visual emphasis?"
-      
-      
+     
+     
     ]
   },
   {
@@ -667,11 +683,9 @@
       "How do I deal with an archived vendor tool that is no longer supported but is required for my course?",
       "What is the process for asking a vendor to remediate an accessibility bug in their platform?",
       "How do I ensure that embedded social media feeds or widgets are accessible?"
-      
+     
     ]
   }
 ]
-
+ 
 }
-
-
